@@ -1,0 +1,218 @@
+/* --- style.css (updated) --- */
+
+/* --- Biến màu để dễ dàng tùy chỉnh --- */
+:root {
+  /* Theme */
+  --primary-color: #28a745;
+  --primary-hover: #218838;
+
+  /* Status colors */
+  --positive-color: #28a745;
+  --negative-color: #dc3545;
+  --neutral-color: #6c757d;
+  --mixed-color: #fd7e14;
+
+  /* Surfaces */
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+
+  /* Text & borders */
+  --text-color: #212529;
+  --muted-text: #6c757d;
+  --border-color: #dee2e6;
+
+  /* Focus ring */
+  --focus-ring-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+
+  /* Improve built-in form controls in both themes */
+  color-scheme: light dark;
+}
+
+/* Dark mode tự động theo hệ thống */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0b0c0e;
+    --card-bg: #111315;
+    --text-color: #e6e8ea;
+    --muted-text: #a0a6ad;
+    --border-color: #2a2f36;
+
+    /* Giữ nguyên màu trạng thái để không lệch ngữ nghĩa */
+    --primary-color: #28a745;
+    --primary-hover: #23913f;
+
+    /* Focus ring tối hơn một chút trong dark */
+    --focus-ring-shadow: 0 0 0 3px rgba(40, 167, 69, 0.35);
+  }
+}
+
+/* --- CSS Reset & Body Styling --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Container chính --- */
+.container {
+  background: var(--card-bg);
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 650px;
+  border: 1px solid var(--border-color);
+}
+
+/* --- Tiêu đề & Mô tả --- */
+h1 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+p {
+  color: var(--muted-text);
+  margin-bottom: 2rem;
+}
+
+/* --- Ô nhập liệu --- */
+textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  caret-color: var(--primary-color);
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: var(--muted-text);
+  opacity: 0.8;
+}
+
+textarea:focus-visible {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: var(--focus-ring-shadow);
+}
+
+/* --- Nút bấm --- */
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring-shadow);
+}
+
+button:disabled,
+button[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --- Khu vực kết quả --- */
+#result {
+  margin-top: 2rem;
+  background: rgba(0, 0, 0, 0.02);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  text-align: left;
+  border-left: 5px solid var(--border-color);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+/* Các lớp màu cho kết quả */
+#result.positive { border-left-color: var(--positive-color); background-color: rgba(40, 167, 69, 0.08); }
+#result.negative { border-left-color: var(--negative-color); background-color: rgba(220, 53, 69, 0.08); }
+#result.neutral  { border-left-color: var(--neutral-color);  background-color: rgba(108, 117, 125, 0.08); }
+#result.mixed    { border-left-color: var(--mixed-color);    background-color: rgba(253, 126, 20, 0.08); }
+#result.error    { border-left-color: var(--negative-color); }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: "SF Mono", "Fira Code", "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Hiệu ứng loading --- */
+.loader {
+  display: none;
+  margin: 1.5rem auto 0;
+  border: 4px solid rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  border-top: 4px solid var(--primary-color);
+  width: 30px;
+  height: 30px;
+  animation: spin 0.8s linear infinite;
+}
+
+.loader.is-active {
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- Trợ năng & tinh chỉnh --- */
+::selection {
+  background: rgba(40, 167, 69, 0.25);
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  button:hover { transform: none; }
+}

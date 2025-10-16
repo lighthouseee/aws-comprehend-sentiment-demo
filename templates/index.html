@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân tích Cảm xúc (AWS Comprehend)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Demo Phân tích Cảm xúc</h1>
+        <p>Sử dụng Python/Flask và API của AWS Comprehend</p>
+
+        <textarea id="inputText" placeholder="Nhập một câu tiếng Anh, ví dụ: 'The performance was absolutely breathtaking, but the ticket price was too high.'"></textarea>
+
+        <button id="analyzeBtn">Phân Tích</button>
+
+        <div class="loader" id="loader"></div>
+
+        <div id="result">
+            <pre>Kết quả phân tích sẽ hiển thị ở đây...</pre>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+</body>
+</html>
