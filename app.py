@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify, render_template
 from textblob import TextBlob # <<< THÊM THƯ VIỆN TEXTBLOB
 
 # --- Bước 2: Khởi tạo ứng dụng Flask ---
-app = Flask(_name_)
+app = Flask(__name__)
 
 # --- BƯỚC 3 (TẠM THỜI VÔ HIỆU HÓA): Khởi tạo Boto3 client ---
 # try:
@@ -102,6 +102,5 @@ def analyze_sentiment():
         return jsonify({"error": f"Đã xảy ra lỗi: {str(e)}"}), 500
 
 # --- Bước 6: Chạy ứng dụng ---
-if _name_ == '_main_':
-    # Sửa lỗi cú pháp name và main thành _name_ và _main_
+if __name__ == '__main__':
     app.run(debug=True, port=5000)
